@@ -1,0 +1,6 @@
+# config/meta.yml
+
+meta_product_name: "hear4me"
+meta_title: "hear4me - Resumo e Análise de Sentimentos de Áudios"
+meta_description: "Está cansado e não quer ouvir aquele monte de áudios que recebeu? Relaxa, a gente te resume e ainda te conta qual é o sentimento da pessoa que mandou!"
+meta_image: "hand-earphone-unsplash-square.png" # should exist in `app/assets/images/`
