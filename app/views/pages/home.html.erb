@@ -2,18 +2,19 @@
   <div class="container">
     <h1>Use seu tempo para o que <strong>realmente importa</strong>!</h1>
     <p>Deixe que a gente te resume aquele monte de áudio que você recebeu hoje.</p>
-    
-    <%# <%= form_for @user, :url => {:controller => 'pages', :action => 'home'},:html => {:multipart => true},:validate => true do |f| %>
-      <%# <%= f.file_field :file, multiple: true, accept:'audio/*' %>
-    <%# <% end %>
     <a class="btn btn-flat" href="#">Enviar áudio</a>
-
-    <%# <form>
+    <form>
       <div class="form-group">
         <label for="audio-file">Enviar áudio</label>
-        <input type="file" class="form-control-file" id="audio-file">
+        <input type="file" class="form-control-file" id="audio-file" accept='audio/*'>
       </div>
-    </form> %>
+    </form>
   </div>
 </div>
-
+<div class='mt-5 mb-5'>
+  <%= form_with url: analyse_text_path, method: :get, remote: true do |f| %>
+    <%= f.label :text_area, "Insira o texto para análise:" %>
+    <%= f.text_field :text_area %>
+    <%= f.submit "Enviar texto" %>
+  <% end %>
+</div>
