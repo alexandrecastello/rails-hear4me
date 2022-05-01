@@ -66,3 +66,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Firebase
 gem 'firebase'
+
+# Cloudinary Storage
+gem 'cloudinary', '~> 1.16.0'
