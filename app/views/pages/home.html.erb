@@ -1,17 +1,21 @@
-<div class="banner" style="background-image: linear-gradient(#023047BB,#02304700), url(https://images.unsplash.com/photo-1577896849786-738ed6c78bd3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80);">
+<div class="banner" style="background-image: linear-gradient(#023047BB,#02304700), url(https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
   <div class="container">
     <h1>Use seu tempo para o que <strong>realmente importa</strong>!</h1>
     <p>Deixe que a gente te resume aquele monte de áudio que você recebeu hoje.</p>
+
+    <%= simple_form_for @record do |f| %>
+      <%= f.input :audio, label: 'Selecione um arquivo de áudio', as: :file, accept:'audio/*' %>
+      <div class="row justify-content-center mt-4 mb-5">
+    <%= f.submit "Enviar", class:"btn btn-flat"%>
+    <% end %>
     
-    <%# <%= form_for @user, :url => {:controller => 'pages', :action => 'home'},:html => {:multipart => true},:validate => true do |f| %>
-      <%# <%= f.file_field :file, multiple: true, accept:'audio/*' %>
-    <%# <% end %>
-    <a class="btn btn-flat" href="#">Enviar áudio</a>
-    <%# <form>
-      <div class="form-group">
-        <label for="audio-file">Enviar áudio</label>
-        <input type="file" class="form-control-file" id="audio-file">
-      </div>
-    </form> %>
+
   </div>
+</div>
+<div class='mt-5 mb-5'>
+  <%= form_with url: analyse_text_path, method: :get, remote: true do |f| %>
+    <%= f.label :text_area, "Insira o texto para análise:" %>
+    <%= f.text_field :text_area %>
+    <%= f.submit "Enviar texto" %>
+  <% end %>
 </div>

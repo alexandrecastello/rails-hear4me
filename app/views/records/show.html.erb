@@ -1,0 +1,18 @@
+<p>Nome:
+<%= @record.nickname %>
+
+<p>Transcription:
+<%= @record.transcription %>
+
+<p>Analysis:
+<%= @record.analysis %>
+
+<p>Analysis Time:
+<%= @record.analysis_time.round 2 %> segundos
+
+<% if @record.audio_url %>
+  <audio controls="controls">
+    <% source_tag(@record.audio_url) %>
+  </audio>
+<% end %>
+

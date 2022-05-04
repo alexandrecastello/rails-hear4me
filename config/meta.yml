@@ -2,5 +2,5 @@
 
 meta_product_name: "hear4me"
 meta_title: "hear4me - Transcreva seus áudios"
-meta_description: "Está cansado e não quer ouvir aquele monte de áudios que recebeu? Relaxa, a gente te resume e ainda te conta qual é o sentimento da pessoa que mandou!"
-meta_image: "listening-to-music.jpg" # should exist in `app/assets/images/`
+meta_description: "Recebeu muitos áudios hoje? Relaxa, a gente te resume e ainda te conta como a pessoa está se sentindo!"
+meta_image: "listening-to-music.jpg" # image must exist in `app/assets/images/`
