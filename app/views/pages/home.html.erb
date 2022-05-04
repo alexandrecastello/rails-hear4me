@@ -3,12 +3,10 @@
     <h1>Use seu tempo para o que <strong>realmente importa</strong>!</h1>
     <p>Deixe que a gente te resume aquele monte de áudio que você recebeu hoje.</p>
 
-    
-    <%= form_tag({action: :analyse_audio, controller: :records}, multipart: true) do %>
-      <%= file_field_tag 'audio' %>
-      <br>
-      <br>
-      <%= submit_tag "Enviar texto", class: 'btn btn-flat' %>
+    <%= simple_form_for @record do |f| %>
+      <%= f.input :audio, label: 'Selecione um arquivo de áudio', as: :file, accept:'audio/*' %>
+      <div class="row justify-content-center mt-4 mb-5">
+    <%= f.submit "Enviar", class:"btn btn-flat"%>
     <% end %>
     
 

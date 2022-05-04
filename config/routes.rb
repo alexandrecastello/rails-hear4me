@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get 'analyse_text', to: 'records#analyse_text'
   get 'analyse_audio', to: 'records#analyse_audio'
 
-  resources :records, only: %i[create]
+  resources :records, only: %i[new show create index]
 end
