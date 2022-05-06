@@ -1,18 +1,20 @@
-<p>Nome:
-<%= @record.nickname %>
-
-<p>Transcription:
-<%= @record.transcription %>
-
-<p>Analysis:
-<%= @record.analysis %>
-
-<p>Analysis Time:
-<%= @record.analysis_time.round 2 %> segundos
-
-<% if @record.audio_url %>
-  <audio controls="controls">
-    <% source_tag(@record.audio_url) %>
-  </audio>
-<% end %>
+<div class='m-5'>
+  <div class="card border-secondary m-auto" style="max-width: 80%;">
+    <div class="card-header d-flex align-items-center">
+      <% if @record.audio_url %>
+        <%= audio_tag(@record.audio_url, autoplay: false, controls: true) %>
+      <% end %>
+      &nbsp
+      <%= @record.created_at.strftime('Data: %d/%m/%Y, Hora: %H:%M:%S') %>
+    </div>
+    <div class="card-body text-secondary">
+      <h5 class="card-title">Transcrição</h5>
+      <p class="card-text"><%= @record.transcription %></p>
+      <h5 class="card-title">Análise</h5>
+      <p class="card-text"><%= @record.analysis %></p>
+      <h5 class="card-title">Tempo de análise</h5>
+      <p class="card-text"><%= @record.analysis_time.round 2 %>segundos</p>
+    </div>
+  </div>
+</div>
 

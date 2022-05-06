@@ -3,9 +3,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100px;
+    height: 20%;
+    min-height: 100px;
     padding: 0px 50px;
     color: #8ECAE6;
+    margin-top: auto;
   }
   .footer-links {
     display: flex;
@@ -23,4 +25,8 @@
   }
   .footer .fa-heart {
     color: #D23333;
+  }
+  .footer p {
+    font-size: small;
+    margin: 1px;
   }

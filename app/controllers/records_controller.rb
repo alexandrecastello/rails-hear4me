@@ -21,27 +21,35 @@ class RecordsController < ApplicationController
   end
 
   def create
-    audio_file = params['record']['audio']
-    uploaded_file = Cloudinary::Uploader.upload(audio_file, resource_type: 'video')
-    filename = "#{uploaded_file['public_id']}.ogg"
-    download_url = uploaded_file['secure_url']
-    # download_url = "https://res.cloudinary.com/alecastello/video/upload/fl_attachment/v#{uploaded_file['version']}/#{filename}" # If it breaks, check Cloudinary username in the url 
-    start = Time.now
-    response = JSON.parse(api_request({ audio_file: download_url, filename: filename }, 'analyse_audio').force_encoding("UTF-8"))
-    finish = Time.now
-    diff = finish - start
-    # => 2.333432
-    if current_user
-      @record = Record.create filename: filename,
-                              analysis: response['textAnalysis'],
-                              user: current_user,
-                              nickname: filename,
-                              transcription: response['transcribedText'],
-                              analysis_time: diff #,
-                              # audio_url: download_url
-      redirect_to @record
+    if params['record'].nil?
+      redirect_to '/', alert: 'Por favor, selecione um arquivo de áudio para usar está funcionalidade.'
+    elsif params['record']['audio'].content_type.starts_with?('audio') == false
+      redirect_to '/', alert: 'Por favor, selecione um arquivo de áudio com extensão *.ogg .'
     else
-      redirect_to result(response)
+      audio_file = params['record']['audio']
+      uploaded_file = Cloudinary::Uploader.upload(audio_file, resource_type: 'video')
+      filename = "#{uploaded_file['public_id']}.ogg"
+      download_url = uploaded_file['secure_url']
+      # If it breaks, check Cloudinary username in the url 
+      # download_url = "https://res.cloudinary.com/alecastello/video/upload/fl_attachment/v#{uploaded_file['version']}/#{filename}"
+      start = Time.now
+      api_response = api_request({ audio_file: download_url, filename: filename }, 'analyse_audio')
+      api_response_encoded = api_response.force_encoding("UTF-8")
+      parsed_response = JSON.parse(api_response_encoded)
+      finish = Time.now
+      diff = finish - start
+      if current_user
+        @record = Record.create filename: filename,
+                                analysis: parsed_response['textAnalysis'],
+                                user: current_user,
+                                nickname: filename,
+                                transcription: parsed_response['transcribedText'],
+                                analysis_time: diff,
+                                audio_url: download_url
+        redirect_to @record
+      else
+        redirect_to result(response)
+      end
     end
   end
 

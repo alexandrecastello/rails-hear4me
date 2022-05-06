@@ -1,21 +1,30 @@
-<div class="banner" style="background-image: linear-gradient(#023047BB,#02304700), url(https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
-  <div class="container">
+<div class="banner" style="background-image: linear-gradient(#023047AA,#02304700), url(https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);">
+  <div class="container" style='width:60%'>
     <h1>Use seu tempo para o que <strong>realmente importa</strong>!</h1>
     <p>Deixe que a gente te resume aquele monte de áudio que você recebeu hoje.</p>
-
+    <br>
+    <h2>Análise de Áudio</h2>
     <%= simple_form_for @record do |f| %>
-      <%= f.input :audio, label: 'Selecione um arquivo de áudio', as: :file, accept:'audio/*' %>
-      <div class="row justify-content-center mt-4 mb-5">
-    <%= f.submit "Enviar", class:"btn btn-flat"%>
+      <%= f.input :audio, label:'Selecione um arquivo de áudio', as: :file, accept:'audio/*', required: true %>
+      <%= f.submit "Enviar áudio", class:"btn btn-flat"%>
     <% end %>
-    
-
+    <div>
+        <br>
+        <br>
+        <br>
+        <br>
+      <div class='mt-5 form-group'>
+        <h1>Caramba, mas recebeu um textão? </h1>
+        <p>A gente também te ajuda com isso 👀</p>
+        <br>
+        <h2>Análise de Texto</h2>
+        <%= form_with url: analyse_text_path, method: :get, remote: true do |f| %>
+          <br>
+          <%= f.text_field :text_area, placeholder: 'Insira um texto para análise aqui',  class:'form-control' %>
+          <br>
+          <%= f.submit "Enviar texto", class:'btn btn-flat' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
-<div class='mt-5 mb-5'>
-  <%= form_with url: analyse_text_path, method: :get, remote: true do |f| %>
-    <%= f.label :text_area, "Insira o texto para análise:" %>
-    <%= f.text_field :text_area %>
-    <%= f.submit "Enviar texto" %>
-  <% end %>
 </div>
