@@ -27,10 +27,10 @@ class RecordsController < ApplicationController
       redirect_to '/', alert: 'Por favor, selecione um arquivo de áudio com extensão *.ogg .'
     else
       audio_file = params['record']['audio']
-      uploaded_file = Cloudinary::Uploader.upload(audio_file, resource_type: 'video')
+      uploaded_file = Cloudinary::Uploader.upload(audio_file, resource_type: 'video', is_audio: true)
       filename = "#{uploaded_file['public_id']}.ogg"
       download_url = uploaded_file['secure_url']
-      # If it breaks, check Cloudinary username in the url 
+      # If it breaks, check Cloudinary username in the url
       # download_url = "https://res.cloudinary.com/alecastello/video/upload/fl_attachment/v#{uploaded_file['version']}/#{filename}"
       start = Time.now
       api_response = api_request({ audio_file: download_url, filename: filename }, 'analyse_audio')
